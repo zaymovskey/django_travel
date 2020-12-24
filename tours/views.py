@@ -1,6 +1,6 @@
 import random
 from django.shortcuts import render
-from .data import *
+from .data import title, subtitle, description, departures, tours
 
 
 def main_view(request):

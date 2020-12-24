@@ -4,10 +4,10 @@ register = template.Library()
 
 
 @register.filter(name='min_max')
-def min_max(l, string):
+def min_max(list, string):
     if string == 'max':
-        return max(l)
+        return max(list)
     elif string == 'min':
-        return min(l)
+        return min(list)
     else:
         return ''

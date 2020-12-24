@@ -131,4 +131,4 @@ tours/__pycache__/data.cpython-37.pyc
 tours/templatetags/__pycache__/
 venv/Include/
 
-setting.py
+/settings.py
