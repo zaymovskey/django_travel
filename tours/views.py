@@ -1,14 +1,45 @@
-from django.http import HttpResponse
+import random
 from django.shortcuts import render
+from .data import *
 
 
 def main_view(request):
-    return render(request, 'tours/index.html')
+    six_random_tours = dict(random.sample(tours.items(), 6))
+    context = {
+        'title': title,
+        'subtitle': subtitle,
+        'description': description,
+        'tours': six_random_tours
+    }
+    return render(request, 'tours/index.html', context)
 
 
-def departure_view(request):
-    return render(request, 'tours/index.html')
+def departure_view(request, departure):
+    filtered_tours = {}
+    tour_prices = []
+    tour_nights = []
+    for id, tour in tours.items():
+        if tour['departure'] == departure:
+            filtered_tours[id] = tours[id]
+            tour_prices.append(tour['price'])
+            tour_nights.append(tour['nights'])
+    selected_departure = departures.get(departure)
+    context = {
+        'tours': filtered_tours,
+        'departure': selected_departure,
+        'tour_prices': tour_prices,
+        'tour_nights': tour_nights,
+    }
+    return render(request, 'tours/departure.html', context)
 
 
-def tour_view(request):
-    return render(request, 'tours/index.html')
+def tour_view(request, id):
+    tour = tours.get(id)
+    departure = departures.get(tour['departure'])
+    stars_count = list(range(1, int(tour['stars'])))
+    context = {
+        'tour': tour,
+        'departure': departure,
+        'stars_count': stars_count
+    }
+    return render(request, 'tours/tour.html', context)

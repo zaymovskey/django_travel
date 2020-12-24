@@ -1,0 +1,17 @@
+{%  extends 'base.html' %}
+{% load min_max %}
+
+{% block content %}
+    <h1 class="display-5 mt-4">Летим из {{ departure }}</h1>
+    <p class="mb-4">
+        Найдено {{ tours|length }} туров, от {{ tour_prices|min_max:"min" }} до {{ tour_prices|min_max:"max" }} и
+        от {{ tour_nights|min_max:"min" }} ночей до {{ tour_nights|min_max:"max" }} ночей
+    </p>
+
+    <div class="row mt-5">
+        {% for id, tour in tours.items %}
+            {% include 'includes/tour_card.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
