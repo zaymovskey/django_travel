@@ -1,5 +1,7 @@
 import random
+
 from django.shortcuts import render
+
 from .data import title, subtitle, description, departures, tours
 
 
