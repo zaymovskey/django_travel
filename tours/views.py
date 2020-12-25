@@ -36,10 +36,8 @@ def departure_view(request, departure):
 def tour_view(request, id):
     tour = tours.get(id)
     departure = departures.get(tour['departure'])
-    stars_count = list(range(1, int(tour['stars'])))
     context = {
         'tour': tour,
         'departure': departure,
-        'stars_count': stars_count
     }
     return render(request, 'tours/tour.html', context)
