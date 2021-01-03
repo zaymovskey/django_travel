@@ -132,3 +132,9 @@ tours/templatetags/__pycache__/
 venv/Include/
 
 /settings.py
+.idea/inspectionProfiles/
+.idea/libraries/
+.idea/misc.xml
+.idea/modules.xml
+.idea/stepik_tours.iml
+.idea/vcs.xml
