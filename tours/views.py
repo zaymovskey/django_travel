@@ -4,9 +4,11 @@ from django.shortcuts import render
 
 from .data import title, subtitle, description, departures, tours
 
+COUNT_OF_TOURS_ON_MAIN_PAGE = 6
+
 
 def main_view(request):
-    six_random_tours = dict(random.sample(tours.items(), 6))
+    six_random_tours = dict(random.sample(tours.items(), COUNT_OF_TOURS_ON_MAIN_PAGE))
     context = {
         'title': title,
         'subtitle': subtitle,
@@ -26,6 +28,10 @@ def departure_view(request, departure):
             tour_prices.append(tour['price'])
             tour_nights.append(tour['nights'])
     selected_departure = departures.get(departure)
+
+    if not filtered_tours:
+        return render(request, '404.html', {})
+
     context = {
         'tours': filtered_tours,
         'departure': selected_departure,
@@ -35,8 +41,11 @@ def departure_view(request, departure):
     return render(request, 'tours/departure.html', context)
 
 
-def tour_view(request, id):
-    tour = tours.get(id)
+def tour_view(request, tour_id):
+    tour = tours.get(tour_id)
+    if not tour:
+        return render(request, '404.html', {})
+
     departure = departures.get(tour['departure'])
     context = {
         'tour': tour,

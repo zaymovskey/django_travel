@@ -132,3 +132,4 @@ tours/templatetags/__pycache__/
 venv/Include/
 
 /settings.py
+.idea/libraries/Django_Lib2.xml
